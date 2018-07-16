@@ -1,0 +1,26 @@
+{
+  "name": "eisenhower-backend",
+  "version": "1.0.0",
+  "description": "Backend of eisenhower website",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BadrYoubiIdrissi/EisenhowerBackend.git"
+  },
+  "keywords": [
+    "Backend",
+    "Eisenhower"
+  ],
+  "author": "Badr Youbi Idrissi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BadrYoubiIdrissi/EisenhowerBackend/issues"
+  },
+  "homepage": "https://github.com/BadrYoubiIdrissi/EisenhowerBackend#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
