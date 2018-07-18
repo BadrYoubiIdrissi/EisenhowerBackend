@@ -1,12 +1,21 @@
 var express = require("express");
+var path = require("path");
+require("dotenv").config();
 var app = express();
 
-var port  = process.env.PORT || 3000;
+var port  = process.env.PORT || 5000;
 
-app.use(express.static(__dirname + "/build"));
+app.get("/api", function(req, res){
+    res.send({ sampleObject : "Hi i'm a sample object!"});
+})
 
-app.get('/', function(req,res) {
-    res.sendFile(__dirname+"/build/index.html");
-});
+if(process.env.NODE_ENV == "production"){
+
+    app.use(express.static(path.join(__dirname,"client/build")));
+    app.get('/*', function(req,res) {
+        res.sendFile(path.join(__dirname,"client/build/index.html"));
+    }); 
+
+}
 
 app.listen(port);
