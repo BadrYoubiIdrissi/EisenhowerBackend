@@ -1,10 +1,12 @@
 {
-  "name": "eisenhower-backend",
+  "name": "eisenhower",
   "version": "1.0.0",
   "description": "Backend of eisenhower website",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client": "cd client && yarn start",
+    "server": "nodemon app.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "repository": {
     "type": "git",
