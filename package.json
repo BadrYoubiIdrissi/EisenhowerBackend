@@ -6,7 +6,8 @@
   "scripts": {
     "client": "cd client && yarn start",
     "server": "nodemon app.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "deploy": "cd client/build && git push production master -f"
   },
   "repository": {
     "type": "git",
