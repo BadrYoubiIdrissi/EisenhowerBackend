@@ -7,7 +7,7 @@
     "client": "cd client && yarn start",
     "server": "nodemon app.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "deploy": "cd client/build && git push production master -f"
+    "deploy": "cd client && npm run build &&  cd build && git init && git add . && git commit -m \"deploy\" && git remote add production git@badr.viarezo.fr:eisenhower-client.git && git push production master -f"
   },
   "repository": {
     "type": "git",
