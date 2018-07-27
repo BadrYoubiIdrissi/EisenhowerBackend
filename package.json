@@ -6,7 +6,7 @@
   "scripts": {
     "client": "cd client && yarn start",
     "server": "nodemon app.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\" \"yarn run sass\"",
+    "dev": "node-sass -r src/styles/scss -o src/styles/css && concurrently --kill-others-on-fail \"yarn server\" \"yarn client\" \"yarn run sass\"",
     "deploy": "cd client && npm run build &&  cd build && git init && git add . && git commit -m \"deploy\" && git remote add production git@badr.viarezo.fr:eisenhower-client.git && git push production master -f",
     "sass" : "node-sass --watch -r client/src/styles/scss -o client/src/styles/css" 
   },
