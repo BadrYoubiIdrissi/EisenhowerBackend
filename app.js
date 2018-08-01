@@ -1,17 +1,20 @@
 var express = require("express");
-var path = require("path");
+var gracefulShutdown = require('http-graceful-shutdown');
 require("dotenv").config();
 
 var mongoose = require("mongoose");
 var dbConfig = require("./config").db;
 
-if(process.env.NODE_ENV == "production"){
+var apiRouter = require("./routes").apiRouter;
+var staticRouter = require("./routes").staticRouter;
 
-    app.use(express.static(path.join(__dirname, "static")));
-    app.get('*', function(req,res) {
-        res.sendFile(path.join(__dirname, "static/index.html"));
-    }); 
+var app = express();
+var port = process.env.PORT || 5000;
+var server = app.listen(port);
+
+app.use("/api", apiRouter);
+app.use(staticRouter);
 
 mongoose.connect("mongodb://localhost:27017", dbConfig, err =>  err ? console.error('Connection error : ', err) : null);
 
-app.listen(port);
+gracefulShutdown(server);
