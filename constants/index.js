@@ -1,0 +1,8 @@
+const categories = {
+    URGENT_IMPORTANT : "URGENT_IMPORTANT",
+    N_URGENT_IMPORTANT : "N_URGENT_IMPORTANT",
+    N_URGENT_N_IMPORTANT : "N_URGENT_N_IMPORTANT",
+    URGENT_N_IMPORTANT : "URGENT_N_IMPORTANT"
+};
+
+module.exports = {categories};
