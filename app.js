@@ -1,9 +1,9 @@
 var express = require("express");
 var path = require("path");
 require("dotenv").config();
-var app = express();
 
-var port  = process.env.PORT || 5000;
+var mongoose = require("mongoose");
+var dbConfig = require("./config").db;
 
 if(process.env.NODE_ENV == "production"){
 
@@ -12,6 +12,6 @@ if(process.env.NODE_ENV == "production"){
         res.sendFile(path.join(__dirname, "static/index.html"));
     }); 
 
-}
+mongoose.connect("mongodb://localhost:27017", dbConfig, err =>  err ? console.error('Connection error : ', err) : null);
 
 app.listen(port);
