@@ -40,6 +40,10 @@ var taskSchema = mongoose.Schema({
         type: Number,
         min: 0,
         required: true
+    },
+    done: {
+        type: Boolean,
+        required: true
     }
 });
 
