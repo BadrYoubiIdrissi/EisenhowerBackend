@@ -15,6 +15,8 @@ var server = app.listen(port);
 app.use("/api", apiRouter);
 app.use(staticRouter);
 
-mongoose.connect("mongodb://localhost:27017", dbConfig, err =>  err ? console.error('Connection error : ', err) : null);
+mongoose.connect("mongodb://localhost:27017", dbConfig);
+mongoose.connection.on('connected', () => console.log("Connected to database!"));
+mongoose.connection.on('error', (err) => console.error(err));
 
 gracefulShutdown(server);
