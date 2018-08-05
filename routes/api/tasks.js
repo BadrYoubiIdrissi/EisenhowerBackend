@@ -37,8 +37,10 @@ function taskRoutes(router){
     
     router.post("/tasks/sync", function (req, res, next) {
         if (req.body.constructor === Array){
-            req.body.forEach(task => Task.update({ _id: task._id }, { $set: task }, { runValidators : true }, err => {if(err) next(err)} ))
-            res.send("Sync succeeded");
+            var errors = [];
+            req.body.forEach(task => Task.update({ _id: task._id }, { $set: task }, { runValidators : true }, err => {if(err) errors.push(err)} ))
+            if(errors !== []) next(errors);
+            else res.send("Sync succeeded");
         }
         else {
             next(Boom.badRequest("The request is not an array of tasks"))
