@@ -1,10 +1,17 @@
 var Task = require("../../models/task");
 var isAuthenticated = require("../../middleware/auth").isAuthenticated;
+var isAdmin = require("../../middleware/auth").isAdmin;
 var Boom = require("boom");
 
 function taskRoutes(router){
     router.use("/tasks", isAuthenticated);
 
+    router.get("/tasks/as/:user", isAdmin, function(req,res, next){
+        Task.find({user: req.params.user},(err, tasks) => {
+            if (err) return next(err)
+            res.json(tasks);
+        });
+    })
     router.get("/tasks", function (req, res, next) {
         Task.find({user:req.user.username},(err, tasks) => {
             if (err) return next(err)
