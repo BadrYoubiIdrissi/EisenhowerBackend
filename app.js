@@ -1,3 +1,11 @@
+/**
+ * This is an express backend that handles :
+ *    -  User authentication 
+ *    -  Task storage
+ *    -  Communicatoin with mongodb
+ */
+
+
 var express = require("express");
 var gracefulShutdown = require('http-graceful-shutdown');
 require("dotenv").config();

@@ -4,14 +4,18 @@ var isAdmin = require("../../middleware/auth").isAdmin;
 var Boom = require("boom");
 
 function taskRoutes(router){
+
+    // Verify user is authenticated on these routes. 
     router.use("/tasks", isAuthenticated);
 
+    // Route to see a specific user's tasks.
     router.get("/tasks/as/:user", isAdmin, function(req,res, next){
         Task.find({user: req.params.user},(err, tasks) => {
             if (err) return next(err)
             res.json(tasks);
         });
     })
+    
     router.get("/tasks", function (req, res, next) {
         Task.find({user:req.user.username},(err, tasks) => {
             if (err) return next(err)
